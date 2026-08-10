@@ -1,5 +1,7 @@
-VIPERFATE STATIC WEBSITE
-Open index.html locally to preview.
-Upload index.html, styles.css, script.js and the assets folder to any static host.
-The newsletter form is front-end only until you connect an email service.
-Replace the placeholder product artwork with real product photography when available.
+VIPERFATE FULL GITHUB PAGES WEBSITE
+
+Upload index.html, styles.css, script.js and the assets folder to the root of your GitHub Pages repository.
+
+The supplied brand-board image is used only to crop the exact ViperFate snake mark and VIPERFATE wordmark. No "YOUR GAME. YOUR FATE." tagline is used.
+
+Everything else is HTML/CSS/JS and works without a build step.

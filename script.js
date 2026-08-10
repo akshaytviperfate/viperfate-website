@@ -1,5 +1,9 @@
-const searchBtn=document.getElementById('searchBtn'), modal=document.getElementById('search'), close=document.getElementById('closeSearch');
-searchBtn?.addEventListener('click',()=>modal.classList.add('open')); close?.addEventListener('click',()=>modal.classList.remove('open'));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
-document.getElementById('signup')?.addEventListener('submit',e=>{e.preventDefault();document.getElementById('formMsg').textContent="YOU'RE IN. WE'LL CALL WHEN IT'S TIME TO STRIKE.";e.target.reset()});
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const el=document.querySelector(a.getAttribute('href'));if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'})}}));
+const glow=document.querySelector('.cursor-glow');
+window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+function openWaitlist(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden'}
+function closeWaitlist(){document.getElementById('modal').classList.remove('open');document.body.style.overflow=''}
+function submitWaitlist(e){e.preventDefault();document.getElementById('form-msg').textContent='YOU ARE ON THE LIST. WE’LL BE IN TOUCH.';e.target.reset()}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeWaitlist()});
+document.querySelector('.menu').addEventListener('click',()=>document.querySelector('.nav nav').classList.toggle('mobile-open'));
