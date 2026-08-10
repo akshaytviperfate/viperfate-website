@@ -1,149 +1,614 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VIPERFATE — Gaming Hardware</title>
-<meta name="description" content="VIPERFATE gaming hardware — engineered for speed, precision and competitive play.">
-<link rel="icon" href="assets/viperfate-mark.jpg">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VIPERFATE — Next-Gen Gaming Hardware</title>
+  <meta name="description" content="VIPERFATE gaming hardware — engineered for ultra-low latency, precision control, and competitive play. Keyboards, mice, headsets, PC cases, liquid coolers, and custom keycaps.">
+  <link rel="icon" href="assets/viperfate-mark.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="noise"></div>
+  <!-- Ambient Canvas Grid Background -->
+  <canvas id="bg-canvas" class="bg-canvas"></canvas>
+  <div class="noise"></div>
 
-<header class="nav">
-  <a class="brand" href="#home" aria-label="ViperFate home">
-    <img class="brand-mark" src="assets/viperfate-mark.jpg" alt="ViperFate logo">
-    <img class="brand-wordmark" src="assets/viperfate-wordmark.jpg" alt="VIPERFATE">
-  </a>
-  <nav>
-    <a href="#products">Products</a>
-    <a href="#technology">Technology</a>
-    <a href="#about">About</a>
-    <a href="#support">Support</a>
-  </nav>
-  <button class="nav-cta" onclick="openWaitlist()">COMING SOON <span>↗</span></button>
-  <button class="menu" aria-label="Open menu">☰</button>
-</header>
+  <!-- Navigation Header -->
+  <header class="nav" id="main-nav">
+    <a class="brand" href="#home" aria-label="VIPERFATE Home">
+      <img class="brand-mark-img" src="assets/viperfate-mark.png" alt="VIPERFATE Viper Mark">
+      <img class="brand-wordmark-img" src="assets/viperfate-wordmark.png" alt="VIPER FATE">
+    </a>
 
-<main id="home">
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-content reveal">
-    <div class="eyebrow"><i></i> NEXT-GEN GAMING HARDWARE</div>
-    <h1>BUILT TO<br><em>DOMINATE.</em></h1>
-    <p>Performance-first gaming gear engineered for speed, control and the moments that decide the match.</p>
-    <div class="hero-actions">
-      <a class="btn primary" href="#products">EXPLORE GEAR <span>→</span></a>
-      <button class="btn ghost" onclick="openWaitlist()">GET LAUNCH ACCESS</button>
+    <nav class="nav-links">
+      <a href="#products" class="nav-link">Arsenal</a>
+      <a href="#loadout" class="nav-link">Loadout Builder</a>
+      <a href="#technology" class="nav-link">Technology</a>
+      <a href="#command" class="nav-link">Software</a>
+      <a href="#audiolab" class="nav-link">RGB/Audio Lab</a>
+      <a href="#about" class="nav-link">About</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="hud-mini-status">
+        <span class="hud-dot"></span>
+        <span class="hud-text">8000Hz • 0.12ms</span>
+      </div>
+      <button class="nav-cta" onclick="openWaitlist()">
+        <span>BUY (COMING SOON)</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </button>
+      <button class="menu-btn" id="menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div class="hero-stats">
-      <div><strong>01</strong><span>PERFORMANCE<br>DRIVEN</span></div>
-      <div><strong>02</strong><span>BUILT FOR<br>GAMERS</span></div>
-      <div><strong>03</strong><span>TESTED TO<br>PERFORM</span></div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <img class="brand-wordmark-img" src="assets/viperfate-wordmark.png" alt="VIPER FATE">
+      <button class="drawer-close" onclick="toggleMobileMenu()">×</button>
     </div>
-  </div>
-  <div class="hero-art reveal delay-2">
-    <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
-    <div class="hero-logo">
-      <img src="assets/viperfate-mark.jpg" alt="ViperFate logo">
-      <div class="scan"></div>
+    <div class="drawer-links">
+      <a href="#products" onclick="toggleMobileMenu()">Arsenal / Products</a>
+      <a href="#loadout" onclick="toggleMobileMenu()">Tactical Loadout Builder</a>
+      <a href="#technology" onclick="toggleMobileMenu()">Technology</a>
+      <a href="#command" onclick="toggleMobileMenu()">Software / Command</a>
+      <a href="#audiolab" onclick="toggleMobileMenu()">Audio & RGB Lab</a>
+      <a href="#about" onclick="toggleMobileMenu()">About VIPERFATE</a>
     </div>
-    <div class="floating-chip chip-a">RGB / SYNC</div>
-    <div class="floating-chip chip-b">LOW LATENCY</div>
-    <div class="floating-chip chip-c">PRECISION</div>
+    <button class="btn primary full-width" onclick="toggleMobileMenu(); openWaitlist();">BUY (COMING SOON) →</button>
   </div>
-  <div class="scroll">SCROLL <span></span></div>
-</section>
 
-<section class="ticker" aria-label="ViperFate updates">
-  <div class="ticker-track">
-    <span>VIPERFATE IS BUILDING PERFORMANCE-FIRST GAMING HARDWARE</span><b>×</b>
-    <span>KEYBOARDS • MICE • HEADSETS • GAMING ACCESSORIES</span><b>×</b>
-    <span>DESIGNED FOR SPEED • CONTROL • PRECISION</span><b>×</b>
-    <span>FIRST-GEN PRODUCTS ARE CURRENTLY IN DEVELOPMENT</span><b>×</b>
-    <span>PURCHASE OPTIONS — COMING SOON</span><b>×</b>
-    <span>BUILT FOR GAMERS. TESTED TO PERFORM.</span><b>×</b>
-    <span>VIPERFATE — STRIKE. DOMINATE. CONQUER.</span><b>×</b>
-    <span>VIPERFATE IS BUILDING PERFORMANCE-FIRST GAMING HARDWARE</span><b>×</b>
-    <span>KEYBOARDS • MICE • HEADSETS • GAMING ACCESSORIES</span><b>×</b>
-    <span>DESIGNED FOR SPEED • CONTROL • PRECISION</span><b>×</b>
-    <span>FIRST-GEN PRODUCTS ARE CURRENTLY IN DEVELOPMENT</span><b>×</b>
-    <span>PURCHASE OPTIONS — COMING SOON</span><b>×</b>
-    <span>BUILT FOR GAMERS. TESTED TO PERFORM.</span><b>×</b>
-    <span>VIPERFATE — STRIKE. DOMINATE. CONQUER.</span><b>×</b>
-  </div>
-</section>
+  <main id="home">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-grid-overlay"></div>
+      <div class="hero-content reveal">
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          GAMING GEAR LEVEL 01 / PROTOCOL READY
+        </div>
+        <h1>STRIKE.<br>DOMINATE. <em>CONQUER.</em></h1>
+        <p class="hero-desc">
+          Engineered for competitive players who demand instantaneous response. Ultra-light chassis, 8000Hz polling rate, and optical precision fangs.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#products">
+            EXPLORE ARSENAL
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a class="btn ghost" href="#loadout">BUILD LOADOUT 🎮</a>
+          <a class="btn audio-lab-btn" href="#audiolab">⚡ AUDIO/RGB LAB</a>
+        </div>
 
-<section id="products" class="section products products-live">
-<div class="section-head reveal"><div><span class="kicker">01 / PRODUCTS</span><h2>GEAR FOR THE<br><em>HUNGRY.</em></h2></div><p>Our first generation lineup is being built around the hardware gamers actually use — keyboards, mice, headsets, PC cases, cooling and custom keycaps.</p></div>
-<section class="product-category reveal"><div class="category-head"><div><span class="kicker">01 / KEYBOARDS</span><h2>KEYBOARDS</h2></div><div class="category-meta"><span>SCROLL →</span><p>Keyboards engineered around feel, response and competitive control.</p></div></div><div class="product-rail"><div class="product-track"><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/venom.svg" alt="VENOM KEYBOARDS concept render" loading="lazy"><span class="product-tag">68%</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-01</span><h3>VENOM</h3><p>68% / MECHANICAL</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/venom-pro.svg" alt="VENOM PRO KEYBOARDS concept render" loading="lazy"><span class="product-tag">75%</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-02</span><h3>VENOM PRO</h3><p>75% / PERFORMANCE</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/naaga.svg" alt="NAAGA KEYBOARDS concept render" loading="lazy"><span class="product-tag">TKL</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-03</span><h3>NAAGA</h3><p>TKL / PRECISION</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/sting.svg" alt="STING KEYBOARDS concept render" loading="lazy"><span class="product-tag">75%</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-04</span><h3>STING</h3><p>75% / COMPETITIVE</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/naaga-max.svg" alt="NAAGA MAX KEYBOARDS concept render" loading="lazy"><span class="product-tag">96%</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-05</span><h3>NAAGA MAX</h3><p>96% / FLAGSHIP</p><button onclick="openWaitlist()">COMING SOON →</button></div></article></div></div></section><section class="product-category reveal"><div class="category-head"><div><span class="kicker">02 / MICE</span><h2>MICE</h2></div><div class="category-meta"><span>SPEED / CONTROL / PRECISION</span><p>Lightweight shells, tuned sensors and fast wireless performance.</p></div></div><div class="product-rail"><div class="product-track"><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/fang.svg" alt="FANG MICE concept render" loading="lazy"><span class="product-tag">ULTRALIGHT</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-01</span><h3>FANG</h3><p>ULTRALIGHT / 8K</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/strike.svg" alt="STRIKE MICE concept render" loading="lazy"><span class="product-tag">ERGONOMIC</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-02</span><h3>STRIKE</h3><p>ERGONOMIC / 8K</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/viper-swift.svg" alt="VIPER SWIFT MICE concept render" loading="lazy"><span class="product-tag">SYMMETRIC</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-03</span><h3>VIPER SWIFT</h3><p>SYMMETRIC / 8K</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/coil.svg" alt="COIL MICE concept render" loading="lazy"><span class="product-tag">PERFORMANCE</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-04</span><h3>COIL</h3><p>PERFORMANCE / 8K</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/serpent.svg" alt="SERPENT MICE concept render" loading="lazy"><span class="product-tag">CLAW</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-05</span><h3>SERPENT</h3><p>CLAW / 8K</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/razor.svg" alt="RAZOR MICE concept render" loading="lazy"><span class="product-tag">FPS</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-06</span><h3>RAZOR</h3><p>FPS / ULTRALIGHT</p><button onclick="openWaitlist()">COMING SOON →</button></div></article></div></div></section><section class="product-category reveal"><div class="category-head"><div><span class="kicker">03 / HEADSETS</span><h2>HEADSETS</h2></div><div class="category-meta"><span>IMMERSION / CLARITY</span><p>Low-latency audio built for footsteps, comms and long sessions.</p></div></div><div class="product-rail"><div class="product-track"><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/rattle.svg" alt="RATTLE HEADSETS concept render" loading="lazy"><span class="product-tag">WIRELESS</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-01</span><h3>RATTLE</h3><p>WIRELESS / 2.4G</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/hiss.svg" alt="HISS HEADSETS concept render" loading="lazy"><span class="product-tag">LOW LATENCY</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-02</span><h3>HISS</h3><p>LOW LATENCY / 2.4G</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/howl.svg" alt="HOWL HEADSETS concept render" loading="lazy"><span class="product-tag">SPATIAL</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-03</span><h3>HOWL</h3><p>SPATIAL / 7.1</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/echo.svg" alt="ECHO HEADSETS concept render" loading="lazy"><span class="product-tag">AUDIO</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-04</span><h3>ECHO</h3><p>AUDIO / STUDIO</p><button onclick="openWaitlist()">COMING SOON →</button></div></article></div></div></section><section class="product-category reveal"><div class="category-head"><div><span class="kicker">04 / PC CASES</span><h2>RGB GLASS CASES</h2></div><div class="category-meta"><span>AIRFLOW / THERMALS / RGB</span><p>Showcase builds with panoramic glass, clean airflow and liquid-cooling support.</p></div></div><div class="product-rail"><div class="product-track"><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/apex-flow.svg" alt="APEX FLOW RGB GLASS CASES concept render" loading="lazy"><span class="product-tag">ATX</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-01</span><h3>APEX FLOW</h3><p>ATX / GLASS / AIRFLOW</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/cobra-x.svg" alt="COBRA X RGB GLASS CASES concept render" loading="lazy"><span class="product-tag">ATX</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-02</span><h3>COBRA X</h3><p>ATX / PANORAMIC GLASS</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/venom-glass.svg" alt="VENOM GLASS RGB GLASS CASES concept render" loading="lazy"><span class="product-tag">DUAL CHAMBER</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-03</span><h3>VENOM GLASS</h3><p>DUAL CHAMBER / RGB</p><button onclick="openWaitlist()">COMING SOON →</button></div></article></div></div></section><section class="product-category reveal"><div class="category-head"><div><span class="kicker">05 / COOLING</span><h2>LIQUID COOLERS</h2></div><div class="category-meta"><span>THERMALS / CONTROL</span><p>High-performance AIO concepts for aggressive gaming builds.</p></div></div><div class="product-rail"><div class="product-track"><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/frostbite-240.svg" alt="FROSTBITE 240 LIQUID COOLERS concept render" loading="lazy"><span class="product-tag">240MM</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-01</span><h3>FROSTBITE 240</h3><p>240MM / AIO</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/hydra-flow-360.svg" alt="HYDRA FLOW 360 LIQUID COOLERS concept render" loading="lazy"><span class="product-tag">360MM</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-02</span><h3>HYDRA FLOW 360</h3><p>360MM / AIO</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/coilcore-360.svg" alt="COILCORE 360 LIQUID COOLERS concept render" loading="lazy"><span class="product-tag">360MM</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-03</span><h3>COILCORE 360</h3><p>360MM / AIO</p><button onclick="openWaitlist()">COMING SOON →</button></div></article></div></div></section><section class="product-category reveal"><div class="category-head"><div><span class="kicker">06 / KEYCAPS</span><h2>KEYCAPS</h2></div><div class="category-meta"><span>PBT / THEMES / RGB</span><p>Gaming-themed keycap sets for custom setups and personal style.</p></div></div><div class="product-rail"><div class="product-track"><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/neon-ops.svg" alt="NEON OPS KEYCAPS concept render" loading="lazy"><span class="product-tag">CYBER</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-01</span><h3>NEON OPS</h3><p>CYBER / DOUBLESHOT</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/cyber-fang.svg" alt="CYBER FANG KEYCAPS concept render" loading="lazy"><span class="product-tag">CYBERPUNK</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-02</span><h3>CYBER FANG</h3><p>CYBERPUNK / PBT</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/tactical-red.svg" alt="TACTICAL RED KEYCAPS concept render" loading="lazy"><span class="product-tag">MILSPEC</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-03</span><h3>TACTICAL RED</h3><p>MILSPEC / PBT</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/void-runner.svg" alt="VOID RUNNER KEYCAPS concept render" loading="lazy"><span class="product-tag">VOID</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-04</span><h3>VOID RUNNER</h3><p>VOID / PBT</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/night-raid.svg" alt="NIGHT RAID KEYCAPS concept render" loading="lazy"><span class="product-tag">STEALTH</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-05</span><h3>NIGHT RAID</h3><p>STEALTH / PBT</p><button onclick="openWaitlist()">COMING SOON →</button></div></article><article class="product-card product-card-live reveal"><div class="product-image live-product"><img src="assets/products/arc-pulse.svg" alt="ARC PULSE KEYCAPS concept render" loading="lazy"><span class="product-tag">NEON</span><span class="render-badge">2K / CONCEPT</span></div><div class="product-info"><span>VF-06</span><h3>ARC PULSE</h3><p>NEON / PBT</p><button onclick="openWaitlist()">COMING SOON →</button></div></article></div></div></section></section>
+        <!-- Gamified HUD Specs Banner -->
+        <div class="hero-hud-panel">
+          <div class="hud-stat-item">
+            <span class="hud-label">POLLING RATE</span>
+            <strong class="hud-value">8000 Hz</strong>
+            <div class="hud-bar"><div class="hud-fill" style="width:100%"></div></div>
+          </div>
+          <div class="hud-stat-item">
+            <span class="hud-label">ACTUATION LATENCY</span>
+            <strong class="hud-value">0.12 ms</strong>
+            <div class="hud-bar"><div class="hud-fill" style="width:98%"></div></div>
+          </div>
+          <div class="hud-stat-item">
+            <span class="hud-label">ULTRALIGHT WEIGHT</span>
+            <strong class="hud-value">49 grams</strong>
+            <div class="hud-bar"><div class="hud-fill" style="width:95%"></div></div>
+          </div>
+        </div>
+      </div>
 
-<section id="technology" class="section tech">
-  <div class="section-head reveal">
-    <div><span class="kicker">02 / ENGINEERED</span><h2>EVERY CLICK.<br><em>COUNTS.</em></h2></div>
-    <p>Designed around the things that matter when the game gets serious: response, consistency, comfort and control.</p>
-  </div>
-  <div class="tech-grid">
-    <div class="tech-item reveal"><span>01</span><div class="tech-icon">⚡</div><h3>LOW LATENCY</h3><p>Fast signal paths and tuned firmware designed to keep your inputs immediate.</p></div>
-    <div class="tech-item reveal delay-1"><span>02</span><div class="tech-icon">◈</div><h3>PRECISION</h3><p>Consistent actuation, tracking and control built for repeatable performance.</p></div>
-    <div class="tech-item reveal delay-2"><span>03</span><div class="tech-icon">✦</div><h3>RGB CONTROL</h3><p>Signature lighting with programmable profiles and a clean competitive aesthetic.</p></div>
-    <div class="tech-item reveal delay-3"><span>04</span><div class="tech-icon">◉</div><h3>BUILT TO LAST</h3><p>Hardware selected with durability, serviceability and everyday use in mind.</p></div>
-  </div>
-</section>
+      <!-- Hero Artwork: Official Emblem with High-Tech Targeting Reticle Ring (No Scanline) -->
+      <div class="hero-art reveal delay-2">
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+        <div class="hero-logo-frame">
+          <div class="hero-reticle-ring"></div>
+          <img class="hero-brand-mark" src="assets/viperfate-mark.png" alt="VIPERFATE Emblem">
+        </div>
 
-<section class="showcase">
-  <div class="showcase-inner reveal">
-    <div class="showcase-copy">
-      <span class="kicker">VIPERFATE COMMAND</span>
-      <h2>YOUR SETUP.<br><em>YOUR RULES.</em></h2>
-      <p>One place for profiles, lighting, macros, firmware and device settings. The ViperFate software ecosystem is being built alongside the hardware.</p>
-      <div class="mini-list"><span>✓ DEVICE PROFILES</span><span>✓ RGB CONTROL</span><span>✓ MACRO SUPPORT</span><span>✓ FIRMWARE UPDATES</span></div>
-      <button class="btn primary" onclick="openWaitlist()">GET EARLY ACCESS →</button>
+        <div class="floating-badge badge-a">
+          <span class="badge-icon">⚡</span>
+          <div>
+            <strong>OPTICAL SWITCH</strong>
+            <small>0.12ms INSTANT CLICK</small>
+          </div>
+        </div>
+        <div class="floating-badge badge-b">
+          <span class="badge-icon">✦</span>
+          <div>
+            <strong>VIPER CHROMA</strong>
+            <small>16.8M COLORED RGB</small>
+          </div>
+        </div>
+        <div class="floating-badge badge-c">
+          <span class="badge-icon">🎯</span>
+          <div>
+            <strong>PIXART 3395</strong>
+            <small>32,000 DPI SENSOR</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Ticker -->
+    <section class="ticker" aria-label="ViperFate updates">
+      <div class="ticker-track">
+        <span>VIPERFATE GAMING GEAR</span><b>×</b>
+        <span>KEYBOARDS</span><b>×</b>
+        <span>ULTRALIGHT MICE</span><b>×</b>
+        <span>SPATIAL HEADSETS</span><b>×</b>
+        <span>RGB GLASS CASES</span><b>×</b>
+        <span>360MM LIQUID COOLERS</span><b>×</b>
+        <span>CUSTOM KEYCAPS</span><b>×</b>
+        <span>8000HZ POLLING RATE</span><b>×</b>
+        <span>STRIKE. DOMINATE. CONQUER.</span><b>×</b>
+        <span>VIPERFATE GAMING GEAR</span><b>×</b>
+        <span>KEYBOARDS</span><b>×</b>
+        <span>ULTRALIGHT MICE</span><b>×</b>
+      </div>
+    </section>
+
+    <!-- Gamified Products Arsenal Section -->
+    <section id="products" class="section products-section">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">01 / GEAR ARSENAL</span>
+          <h2>CHOOSE YOUR<br><em>WEAPONS.</em></h2>
+        </div>
+        <p>
+          First-generation competitive gaming hardware. Designed for maximum speed, optical actuation, and rugged tournament durability.
+        </p>
+      </div>
+
+      <!-- Controls: Category Filter & Search Bar -->
+      <div class="product-controls reveal">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="product-search" placeholder="Search gear (e.g. Venom, 8K mouse, 360mm, PBT)..." oninput="filterProducts()">
+        </div>
+        <div class="category-tabs" id="category-tabs">
+          <button class="tab-btn active" data-category="all" onclick="setCategory('all', this)">ALL ARSENAL</button>
+          <button class="tab-btn" data-category="keyboards" onclick="setCategory('keyboards', this)">KEYBOARDS</button>
+          <button class="tab-btn" data-category="mice" onclick="setCategory('mice', this)">MICE</button>
+          <button class="tab-btn" data-category="headsets" onclick="setCategory('headsets', this)">HEADSETS</button>
+          <button class="tab-btn" data-category="cases" onclick="setCategory('cases', this)">RGB CASES</button>
+          <button class="tab-btn" data-category="cooling" onclick="setCategory('cooling', this)">COOLING</button>
+          <button class="tab-btn" data-category="keycaps" onclick="setCategory('keycaps', this)">KEYCAPS</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Product Grid rendered with Gamified Stats & Ultra-Realistic RGB Graphics -->
+      <div class="product-grid" id="product-grid">
+        <!-- Rendered by script.js -->
+      </div>
+    </section>
+
+    <!-- GAMIFIED TACTICAL LOADOUT BUILDER -->
+    <section id="loadout" class="section loadout-section">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">02 / BUILDER</span>
+          <h2>TACTICAL GEAR<br><em>LOADOUT BUILDER.</em></h2>
+        </div>
+        <p>
+          Assemble your ideal VIPERFATE gaming setup. Select components to calculate your total loadout performance score, latency, and power rating!
+        </p>
+      </div>
+
+      <div class="loadout-container reveal">
+        <div class="loadout-picker">
+          <div class="loadout-slot">
+            <span class="slot-label">01 / KEYBOARD</span>
+            <select id="loadout-kb" onchange="calculateLoadout()">
+              <option value="venom68">VENOM 68% Optical (0.12ms)</option>
+              <option value="venompro">VENOM PRO 75% Gasket (0.10ms)</option>
+              <option value="naagatkl">NAAGA TKL Silent Optical (0.15ms)</option>
+              <option value="sting75">STING 75% Rapid Trigger (0.08ms)</option>
+            </select>
+          </div>
+          <div class="loadout-slot">
+            <span class="slot-label">02 / MOUSE</span>
+            <select id="loadout-ms" onchange="calculateLoadout()">
+              <option value="fang8k">FANG Ultralight 8K (49g)</option>
+              <option value="strikeergo">STRIKE Ergo 8K (58g)</option>
+              <option value="viperswift">VIPER SWIFT Symmetrical (52g)</option>
+            </select>
+          </div>
+          <div class="loadout-slot">
+            <span class="slot-label">03 / HEADSET</span>
+            <select id="loadout-hs" onchange="calculateLoadout()">
+              <option value="rattle">RATTLE 2.4G Spatial Wireless</option>
+              <option value="hisspro">HISS PRO 7.1 Surround</option>
+              <option value="howl">HOWL Ultra Spatial Cyber</option>
+            </select>
+          </div>
+          <div class="loadout-slot">
+            <span class="slot-label">04 / PC CASE & COOLER</span>
+            <select id="loadout-cs" onchange="calculateLoadout()">
+              <option value="apex360">APEX Flow Glass + FROSTBITE 240mm</option>
+              <option value="cobrax">COBRA X Panoramic + HYDRA 360mm</option>
+              <option value="venomcube">VENOM Chamber Cube + COILCORE 360mm</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="loadout-summary-card">
+          <div class="summary-header">
+            <img src="assets/viperfate-mark.png" alt="Viper Fate" width="42">
+            <div>
+              <h3>CUSTOM BATTLE STATION</h3>
+              <small>TACTICAL COMBINATION SYNC</small>
+            </div>
+          </div>
+
+          <div class="summary-stats-grid">
+            <div class="sum-stat">
+              <span>LOADOUT SCORE</span>
+              <strong id="loadout-score">99.8 / 100</strong>
+            </div>
+            <div class="sum-stat">
+              <span>COMBINED LATENCY</span>
+              <strong id="loadout-latency">0.10 ms</strong>
+            </div>
+            <div class="sum-stat">
+              <span>MAX POLLING</span>
+              <strong id="loadout-polling">8000 Hz</strong>
+            </div>
+            <div class="sum-stat">
+              <span>TOTAL WEIGHT</span>
+              <strong id="loadout-weight">974g (Gear)</strong>
+            </div>
+          </div>
+
+          <button class="btn primary full-width" onclick="openWaitlist()">BUY LOADOUT (COMING SOON) →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Sound & RGB Engine (Lab) -->
+    <section id="audiolab" class="section audiolab-section">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">03 / VIPER LABS</span>
+          <h2>ACOUSTIC & LIGHTING<br><em>LABORATORY.</em></h2>
+        </div>
+        <p>
+          Test physical switch sound profiles and dynamic RGB themes right in your browser. Type keys (A-Z) on your keyboard to hear real simulated keystroke acoustics!
+        </p>
+      </div>
+
+      <div class="lab-container reveal">
+        <!-- Switch Sound Synth Box -->
+        <div class="lab-card sound-synth-box">
+          <div class="lab-card-header">
+            <span class="lab-badge">WEBAUDIO ACOUSTIC ENGINE</span>
+            <h3>MECHANICAL SWITCH ACOUSTICS</h3>
+            <p>Click below or hit physical keys (A-Z) to trigger switch sounds!</p>
+          </div>
+          <div class="synth-switches">
+            <button class="synth-switch-btn active" data-switch="optical" onclick="selectSwitch('optical', this)">
+              <div class="switch-color optical-red"></div>
+              <div class="switch-meta">
+                <strong>VENOM OPTICAL RED</strong>
+                <small>45g Linear • Ultra Fast • Thocky Acoustic</small>
+              </div>
+            </button>
+            <button class="synth-switch-btn" data-switch="clicky" onclick="selectSwitch('clicky', this)">
+              <div class="switch-color clicky-cyan"></div>
+              <div class="switch-meta">
+                <strong>STING CLICKY SPEED</strong>
+                <small>50g Tactile • Crisp Click • Tactile</small>
+              </div>
+            </button>
+            <button class="synth-switch-btn" data-switch="silent" onclick="selectSwitch('silent', this)">
+              <div class="switch-color silent-black"></div>
+              <div class="switch-meta">
+                <strong>NAAGA SILENT LINEAR</strong>
+                <small>40g Muted • Dual Dampened Acoustic</small>
+              </div>
+            </button>
+          </div>
+          <div class="test-key-pad">
+            <button class="test-key" onclick="playSwitchSound()">PRESS KEY (SPACEBAR / CLICK)</button>
+            <span class="key-hint">Tip: Typing on your physical keyboard triggers key sounds!</span>
+          </div>
+        </div>
+
+        <!-- RGB Palette Switcher Box -->
+        <div class="lab-card rgb-control-box">
+          <div class="lab-card-header">
+            <span class="lab-badge">DYNAMIC THEME ENGINE</span>
+            <h3>WEBSITE RGB LIGHTING PROFILE</h3>
+            <p>Switch site accent lighting in real-time to match your gaming rig aesthetic.</p>
+          </div>
+          <div class="rgb-presets">
+            <button class="rgb-preset-btn active" style="--accent:#ff2018" onclick="setThemeRGB('crimson', this)">
+              <span class="preset-dot" style="background:#ff2018"></span>
+              CRIMSON VIPER
+            </button>
+            <button class="rgb-preset-btn" style="--accent:#00f0ff" onclick="setThemeRGB('cyan', this)">
+              <span class="preset-dot" style="background:#00f0ff"></span>
+              CYBER PULSE
+            </button>
+            <button class="rgb-preset-btn" style="--accent:#bf00ff" onclick="setThemeRGB('purple', this)">
+              <span class="preset-dot" style="background:#bf00ff"></span>
+              VOID NEON
+            </button>
+            <button class="rgb-preset-btn" style="--accent:#39ff14" onclick="setThemeRGB('green', this)">
+              <span class="preset-dot" style="background:#39ff14"></span>
+              VENOM GREEN
+            </button>
+            <button class="rgb-preset-btn" style="--accent:#ff7a18" onclick="setThemeRGB('orange', this)">
+              <span class="preset-dot" style="background:#ff7a18"></span>
+              SOLAR FLARE
+            </button>
+          </div>
+          <div class="rgb-preview-bar">
+            <div class="preview-glow"></div>
+            <span>ACTIVE PROFILE: <strong id="active-rgb-label">CRIMSON VIPER (#FF2018)</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIPERFATE Command Software Section -->
+    <section id="command" class="section showcase-section">
+      <div class="showcase-inner reveal">
+        <div class="showcase-copy">
+          <span class="kicker">04 / SOFTWARE ECOSYSTEM</span>
+          <h2>VIPERFATE<br><em>COMMAND.</em></h2>
+          <p>
+            Unified hardware control software engineered for maximum gaming performance. Configure macros, polling rates, per-key RGB, and custom sensor profiles with zero bloatware.
+          </p>
+          <div class="mini-list">
+            <span>✓ 8000Hz Ultra Polling</span>
+            <span>✓ On-Board Memory Sync</span>
+            <span>✓ Per-Key Chroma RGB</span>
+            <span>✓ Zero Background CPU Impact</span>
+            <span>✓ Low Latency Firmware Update</span>
+            <span>✓ Cloud Profile Backup</span>
+          </div>
+          <button class="btn primary" onclick="openWaitlist()">GET EARLY SOFTWARE ACCESS →</button>
+        </div>
+
+        <!-- Interactive Software Window Mockup -->
+        <div class="dashboard-window">
+          <div class="dash-top-bar">
+            <div class="dash-window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="dash-title-text">VIPERFATE COMMAND v2.4.0 — HARDWARE SUITE</div>
+            <div class="dash-status">
+              <span class="status-pulse"></span> SYSTEM ONLINE
+            </div>
+          </div>
+          <div class="dash-body">
+            <aside class="dash-sidebar">
+              <img src="assets/viperfate-mark.png" alt="VF Logo" width="32" style="margin-bottom:12px">
+              <button class="dash-nav-item active" onclick="switchDashTab('dashboard', this)"><span>📊</span> Dashboard</button>
+              <button class="dash-nav-item" onclick="switchDashTab('lighting', this)"><span>✦</span> RGB Chroma</button>
+              <button class="dash-nav-item" onclick="switchDashTab('performance', this)"><span>⚡</span> Performance</button>
+              <button class="dash-nav-item" onclick="switchDashTab('profiles', this)"><span>💾</span> Profiles</button>
+            </aside>
+            <div class="dash-main-content">
+              <div class="dash-header">
+                <div class="dash-device-selector">
+                  <h4>VENOM PRO 75%</h4>
+                  <small>CONNECTED via 2.4GHz WIRELESS</small>
+                </div>
+                <div class="battery-status">
+                  <span>98% BATTERY</span>
+                  <div class="battery-bar"><div class="battery-fill" style="width:98%"></div></div>
+                </div>
+              </div>
+
+              <!-- Live Graph Canvas -->
+              <div class="graph-card">
+                <div class="graph-header">
+                  <span>LIVE SENSOR TELEMETRY & POLLING RATE</span>
+                  <div class="polling-selector">
+                    <button class="poll-btn" onclick="setPolling(1000, this)">1000Hz</button>
+                    <button class="poll-btn" onclick="setPolling(4000, this)">4000Hz</button>
+                    <button class="poll-btn active" onclick="setPolling(8000, this)">8000Hz</button>
+                  </div>
+                </div>
+                <canvas id="telemetry-canvas" class="telemetry-canvas"></canvas>
+              </div>
+
+              <div class="dash-metrics-grid">
+                <div class="metric-card">
+                  <span>RESPONSE TIME</span>
+                  <strong id="metric-response">0.12 ms</strong>
+                </div>
+                <div class="metric-card">
+                  <span>CURRENT DPI</span>
+                  <strong id="metric-dpi">32,000 DPI</strong>
+                </div>
+                <div class="metric-card">
+                  <span>ACTIVE PROFILE</span>
+                  <strong>PRO FPS #1</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology & Architecture Section -->
+    <section id="technology" class="section tech-section">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">05 / ARCHITECTURE</span>
+          <h2>BUILT FOR<br><em>VICTORY.</em></h2>
+        </div>
+        <p>
+          We strip away gimmicks and double down on pure hardware performance. Here is how VIPERFATE redefines gaming peripherals.
+        </p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card reveal">
+          <span class="tech-num">01</span>
+          <div class="tech-icon-wrapper">⚡</div>
+          <h3>SUB-MILLISECOND LATENCY</h3>
+          <p>Custom MCU controllers with sub-millisecond signal routing and 8000Hz polling rate for instant click response.</p>
+        </div>
+        <div class="tech-card reveal delay-1">
+          <span class="tech-num">02</span>
+          <div class="tech-icon-wrapper">◈</div>
+          <h3>GEN-3 OPTICAL FANGS</h3>
+          <p>Optical switches eliminate debounce delay and double-click issues, rated for over 100 million keystrokes.</p>
+        </div>
+        <div class="tech-card reveal delay-2">
+          <span class="tech-num">03</span>
+          <div class="tech-icon-wrapper">✦</div>
+          <h3>VIPER-CHROMA RGB</h3>
+          <p>Addressable per-key backlighting with hardware memory storage for zero-lag lighting animations.</p>
+        </div>
+        <div class="tech-card reveal delay-3">
+          <span class="tech-num">04</span>
+          <div class="tech-icon-wrapper">🛡️</div>
+          <h3>MIL-SPEC DURABILITY</h3>
+          <p>Aerospace-grade aluminum top plates, double-shot PBT keycaps, and reinforced chassis engineered for endless gaming sessions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand / About Section -->
+    <section id="about" class="section about-section">
+      <div class="about-mark reveal">
+        <img class="about-brand-logo" src="assets/viperfate-mark.png" alt="VIPERFATE Logo Mark">
+      </div>
+      <div class="about-copy reveal delay-1">
+        <span class="kicker">06 / THE BRAND</span>
+        <h2>NO COMPROMISE.<br><em>NO EXCUSES.</em></h2>
+        <p>
+          VIPERFATE was created with a single objective: empower competitive gamers with hardware that accelerates their reflexes instead of holding them back.
+        </p>
+        <p>
+          From switch spring weighting to sensor smoothing algorithms and acoustic dampening, every product is calibrated for peak competitive performance.
+        </p>
+      </div>
+    </section>
+
+    <!-- Launch Drop Access Section -->
+    <section id="support" class="section support-section">
+      <div class="support-box reveal">
+        <span class="kicker">07 / JOIN THE HUNT</span>
+        <h2>THE HUNT<br>STARTS <em>SOON.</em></h2>
+        <p>
+          First-generation production drops are in final calibration. Pre-register to receive instant release alerts, founder pricing, and drop access.
+        </p>
+        <div class="launch-actions">
+          <button class="btn primary" onclick="openWaitlist()">BUY (COMING SOON) →</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/viperfate-mark.png" alt="VIPERFATE" width="40">
+        <img src="assets/viperfate-wordmark.png" alt="VIPER FATE" height="28">
+      </div>
+      <div class="footer-links">
+        <a href="#products">Arsenal</a>
+        <a href="#loadout">Loadout Builder</a>
+        <a href="#technology">Technology</a>
+        <a href="#command">Command App</a>
+        <a href="#audiolab">Audio/RGB Lab</a>
+        <a href="#about">About</a>
+      </div>
     </div>
-    <div class="dashboard">
-      <div class="dash-top"><span>VIPERFATE COMMAND</span><b>● ONLINE</b></div>
-      <div class="dash-main">
-        <aside><div class="dash-logo">VF</div><span class="active">Dashboard</span><span>Devices</span><span>Lighting</span><span>Profiles</span><span>Firmware</span></aside>
-        <div class="dash-content"><div class="dash-title">VENOM <small>CONNECTED</small></div><div class="graph"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="dash-cards"><div>Polling Rate<strong>1000 Hz</strong></div><div>Profile<strong>COMPETITIVE</strong></div><div>RGB<strong>ACTIVE</strong></div></div></div>
+    <div class="footer-bottom">
+      <span>© 2026 VIPERFATE GAMING HARDWARE. ALL RIGHTS RESERVED.</span>
+      <span>ENGINEERED FOR COMPETITIVE PLAYERS.</span>
+    </div>
+  </footer>
+
+  <!-- Product Quick View Modal -->
+  <div class="modal" id="product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-card product-detail-modal">
+      <button class="modal-close" onclick="closeProductModal()" aria-label="Close Product Drawer">×</button>
+      <div class="modal-product-layout">
+        <div class="modal-product-art" id="modal-product-art">
+          <!-- Rendered SVG preview -->
+        </div>
+        <div class="modal-product-info">
+          <span class="kicker" id="modal-product-model">VF-01 / KEYBOARD</span>
+          <h2 id="modal-product-title">VENOM 68%</h2>
+          <div class="modal-badges">
+            <span class="render-badge" id="modal-product-badge">8000Hz POLLING</span>
+            <span class="product-tag" id="modal-product-tag">OPTICAL RED</span>
+          </div>
+          <p class="modal-desc" id="modal-product-desc">
+            Compact 68% layout built with aircraft-grade aluminum casing, optical switches, and per-key RGB backlighting.
+          </p>
+
+          <div class="modal-spec-grid">
+            <div class="modal-spec-item">
+              <span class="spec-label">SWITCH TYPE</span>
+              <strong class="spec-val" id="spec-switch">Gen-3 Optical Red</strong>
+            </div>
+            <div class="modal-spec-item">
+              <span class="spec-label">RESPONSE TIME</span>
+              <strong class="spec-val" id="spec-response">0.12 ms</strong>
+            </div>
+            <div class="modal-spec-item">
+              <span class="spec-label">CONNECTIVITY</span>
+              <strong class="spec-val" id="spec-conn">2.4GHz / USB-C</strong>
+            </div>
+            <div class="modal-spec-item">
+              <span class="spec-label">WEIGHT</span>
+              <strong class="spec-val" id="spec-weight">650 grams</strong>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn primary" onclick="closeProductModal(); openWaitlist();">BUY (COMING SOON) →</button>
+            <button class="btn ghost" onclick="closeProductModal()">CLOSE</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<section id="about" class="section about">
-  <div class="about-mark reveal"><img src="assets/viperfate-mark.jpg" alt="ViperFate logo"></div>
-  <div class="about-copy reveal delay-1"><span class="kicker">03 / THE BRAND</span><h2>NO COMPROMISE.<br><em>NO EXCUSES.</em></h2><p>VIPERFATE is a gaming hardware brand built around one idea: great gear should help you play better, not get in your way.</p><p>From industrial design to switches, sensors and acoustics, every product is developed with competitive gaming and everyday gamers in mind.</p></div>
-</section>
-
-<section id="support" class="section support">
-  <div class="support-box reveal">
-    <span class="kicker">04 / LAUNCH</span>
-    <h2>THE HUNT<br>STARTS <em>SOON.</em></h2>
-    <p>Products are currently in development. Join the launch list and be first to see pricing, availability and early-buyer drops.</p>
-    <button class="btn primary" onclick="openWaitlist()">JOIN LAUNCH LIST →</button>
+  <!-- Email Waitlist Modal -->
+  <div class="modal" id="waitlist-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-card waitlist-card">
+      <button class="modal-close" onclick="closeWaitlist()" aria-label="Close Waitlist Modal">×</button>
+      <img src="assets/viperfate-mark.png" alt="VIPERFATE" width="50" style="margin-bottom:12px">
+      <span class="kicker">VIPERFATE / EARLY DROP ACCESS</span>
+      <h2>BE FIRST<br>IN THE <em>HUNT.</em></h2>
+      <p>Drop your email to receive instant buy notification as soon as products drop.</p>
+      
+      <form id="waitlist-form" onsubmit="submitWaitlist(event)">
+        <div class="form-input-group">
+          <input type="email" id="waitlist-email" required placeholder="your.email@esports.com" aria-label="Email address">
+          <button type="submit" class="btn primary">NOTIFY ME ON LAUNCH →</button>
+        </div>
+      </form>
+      <div id="form-msg" class="form-feedback"></div>
+    </div>
   </div>
-</section>
-</main>
 
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand"><img src="assets/viperfate-mark.jpg" alt=""><div><strong>VIPERFATE</strong><span>STRIKE. DOMINATE. CONQUER.</span></div></div>
-    <div class="footer-links"><a href="#products">Products</a><a href="#technology">Technology</a><a href="#about">About</a><a href="#support">Support</a></div>
-  </div>
-  <div class="footer-bottom"><span>© 2026 VIPERFATE. ALL RIGHTS RESERVED.</span><span>ENGINEERED FOR GAMERS.</span></div>
-</footer>
-
-<div class="modal" id="modal">
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeWaitlist()">×</button>
-    <span class="kicker">VIPERFATE / EARLY ACCESS</span>
-    <h2>BE FIRST<br>IN THE <em>HUNT.</em></h2>
-    <p>Drop your email and we'll let you know when the first products are ready.</p>
-    <form onsubmit="submitWaitlist(event)"><input type="email" required placeholder="your@email.com"><button class="btn primary">JOIN →</button></form>
-    <small id="form-msg"></small>
-  </div>
-</div>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

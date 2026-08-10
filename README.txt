@@ -1,1 +1,0 @@
-VIPERFATE website update built directly from the uploaded index(2).html, styles(3).css and script(3).js. Original site structure/animations are preserved; product section and visual refinements are appended.
