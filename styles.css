@@ -35,7 +35,7 @@ html, body {
   color-scheme: dark;
 }
 
-/* High-Density Seamless Noise Grain Background */
+/* High-Density Seamless Grey Noise Grain — full-page overlay */
 .bg-canvas {
   position: fixed;
   top: 0;
@@ -50,13 +50,16 @@ html, body {
 .noise {
   position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
-  z-index: 1;
+  z-index: 9999;
   opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 120px 120px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='4' seed='23' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
   background-repeat: repeat;
-  mix-blend-mode: overlay;
+  filter: grayscale(1) contrast(1.35);
+  mix-blend-mode: normal;
 }
 
 a {
