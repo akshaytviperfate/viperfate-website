@@ -109,12 +109,50 @@
         </div>
       </div>
 
-      <!-- Hero Artwork: Apex Cyber-Shield Matrix Container -->
+      <!-- Hero Artwork: 3D Swirling Light Trail Matrix (Interactive Hover) -->
       <div class="hero-art reveal delay-2">
-        <div class="viper-shield-bg">
-          <div class="shield-pulse-glow"></div>
-          <div class="shield-outer-diamond"></div>
-          <div class="shield-inner-diamond"></div>
+        <div class="trail-3d-stage">
+          <!-- 3D Trail Stream 1 -->
+          <div class="trail-orbit orbit-1">
+            <svg class="trail-svg" viewBox="0 0 300 300">
+              <defs>
+                <linearGradient id="trailGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff2018" stop-opacity="1"/>
+                  <stop offset="50%" stop-color="#ff7a18" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#ff2018" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <circle cx="150" cy="150" r="135" stroke="url(#trailGrad1)" class="trail-path path-1" />
+            </svg>
+          </div>
+
+          <!-- 3D Trail Stream 2 -->
+          <div class="trail-orbit orbit-2">
+            <svg class="trail-svg" viewBox="0 0 300 300">
+              <defs>
+                <linearGradient id="trailGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#ff2018" stop-opacity="1"/>
+                  <stop offset="50%" stop-color="#00f0ff" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#ff2018" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <circle cx="150" cy="150" r="135" stroke="url(#trailGrad2)" class="trail-path path-2" />
+            </svg>
+          </div>
+
+          <!-- 3D Trail Stream 3 -->
+          <div class="trail-orbit orbit-3">
+            <svg class="trail-svg" viewBox="0 0 300 300">
+              <defs>
+                <linearGradient id="trailGrad3" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ff2018" stop-opacity="1"/>
+                  <stop offset="60%" stop-color="#bf00ff" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#ff2018" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <circle cx="150" cy="150" r="135" stroke="url(#trailGrad3)" class="trail-path path-3" />
+            </svg>
+          </div>
         </div>
 
         <div class="hero-logo-frame">
