@@ -439,7 +439,7 @@ h1 em, h2 em {
   box-shadow: 0 0 8px var(--red);
 }
 
-/* Hero Artwork & Tech Targeting Reticle Ring (No Scanlines) */
+/* Hero Artwork Section */
 .hero-art {
   position: relative;
   height: 480px;
@@ -456,28 +456,6 @@ h1 em, h2 em {
   animation: float 6s ease-in-out infinite;
 }
 
-.hero-reticle-ring {
-  position: absolute;
-  inset: -20px;
-  border: 1px dashed rgba(255, 32, 24, 0.3);
-  border-radius: 50%;
-  animation: reticleSpin 25s linear infinite;
-  pointer-events: none;
-}
-
-.hero-reticle-ring::before {
-  content: "";
-  position: absolute;
-  inset: 15px;
-  border: 1px solid rgba(255, 32, 24, 0.15);
-  border-radius: 50%;
-}
-
-@keyframes reticleSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 .hero-brand-mark {
   width: 85%;
   height: auto;
@@ -492,6 +470,7 @@ h1 em, h2 em {
   50% { transform: translateY(-16px) rotate(-1.5deg); }
 }
 
+/* Twisted Animated Rings */
 .orbit {
   position: absolute;
   border: 1px solid rgba(255, 32, 24, 0.18);
@@ -511,6 +490,13 @@ h1 em, h2 em {
   height: 230px;
   animation: spin 24s linear infinite reverse;
   border-color: rgba(255, 122, 24, 0.12);
+}
+
+.orbit-c {
+  width: 620px;
+  height: 270px;
+  animation: spin 32s linear infinite;
+  border-color: rgba(0, 240, 255, 0.15);
 }
 
 @keyframes spin {
